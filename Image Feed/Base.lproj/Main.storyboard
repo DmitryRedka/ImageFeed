@@ -88,7 +88,7 @@
                     <navigationItem key="navigationItem" id="rAP-BT-3zf"/>
                     <connections>
                         <outlet property="tableView" destination="0ZD-Gs-GgP" id="Fuw-16-5ad"/>
-                        <segue destination="KFW-Y8-gau" kind="presentation" identifier="ShowSingleImage" id="rQm-cr-rXl"/>
+                        <segue destination="KFW-Y8-gau" kind="presentation" identifier="ShowSingleImage" modalPresentationStyle="fullScreen" id="rQm-cr-rXl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -100,20 +100,33 @@
             <objects>
                 <viewController id="KFW-Y8-gau" customClass="SingleImageViewController" customModule="Image_Feed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h2i-mx-6pB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZBo-oy-VFV">
-                                <rect key="frame" x="0.0" y="48" width="414" height="790"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xt-P9-OY5">
+                                <rect key="frame" x="16" y="62" width="38" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Xt-P9-OY5" secondAttribute="height" multiplier="38:35" id="9DF-iG-WtO"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="backward" title=" "/>
+                                <connections>
+                                    <action selector="didTabBackButton:" destination="KFW-Y8-gau" eventType="touchUpInside" id="pjx-zr-dwN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7RM-LG-zu7"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="7RM-LG-zu7" firstAttribute="bottom" secondItem="ZBo-oy-VFV" secondAttribute="bottom" id="HVR-hD-waq"/>
-                            <constraint firstItem="ZBo-oy-VFV" firstAttribute="top" secondItem="7RM-LG-zu7" secondAttribute="top" id="OPR-Tw-mXm"/>
-                            <constraint firstItem="ZBo-oy-VFV" firstAttribute="leading" secondItem="7RM-LG-zu7" secondAttribute="leading" id="xV4-Yr-l6d"/>
-                            <constraint firstItem="7RM-LG-zu7" firstAttribute="trailing" secondItem="ZBo-oy-VFV" secondAttribute="trailing" id="xaZ-y4-Brv"/>
+                            <constraint firstAttribute="bottom" secondItem="ZBo-oy-VFV" secondAttribute="bottom" id="HVR-hD-waq"/>
+                            <constraint firstItem="ZBo-oy-VFV" firstAttribute="top" secondItem="h2i-mx-6pB" secondAttribute="top" id="OPR-Tw-mXm"/>
+                            <constraint firstItem="4Xt-P9-OY5" firstAttribute="top" secondItem="7RM-LG-zu7" secondAttribute="top" constant="14" id="gvp-NF-Hhm"/>
+                            <constraint firstItem="4Xt-P9-OY5" firstAttribute="leading" secondItem="7RM-LG-zu7" secondAttribute="leading" constant="16" id="rDt-PZ-4TV"/>
+                            <constraint firstItem="ZBo-oy-VFV" firstAttribute="leading" secondItem="h2i-mx-6pB" secondAttribute="leading" id="xV4-Yr-l6d"/>
+                            <constraint firstAttribute="trailing" secondItem="ZBo-oy-VFV" secondAttribute="trailing" id="xaZ-y4-Brv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rop-UD-BDX"/>
@@ -257,6 +270,7 @@
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="avatar" width="70" height="70"/>
+        <image name="backward" width="9" height="16"/>
         <image name="like_button_on" width="42" height="42"/>
         <image name="logout_button" width="24" height="24"/>
         <image name="tab_editorial_active" width="30" height="30"/>
