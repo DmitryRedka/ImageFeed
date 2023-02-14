@@ -23,10 +23,13 @@ extension ProfileViewController {
         }
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
-        profileImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-        profileImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([
+            profileImageView.widthAnchor.constraint(equalToConstant: 70),
+            profileImageView.heightAnchor.constraint(equalToConstant: 70),
+            profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            profileImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+        ])
+
     }
     
     func addNameLabel() {
@@ -39,8 +42,11 @@ extension ProfileViewController {
         nameLabel.textColor = .white
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
-        nameLabel.topAnchor.constraint(equalTo: profileImageView!.bottomAnchor, constant: 8).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: profileImageView!.bottomAnchor, constant: 8),
+            nameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+        ])
+
     }
     
     func addLoginNameLabel() {
@@ -50,11 +56,14 @@ extension ProfileViewController {
         }
         loginNameLabel.text = "@ekaterina_nov"
         loginNameLabel.font = .systemFont(ofSize: 13, weight: .regular)
-        loginNameLabel.textColor = .YPGray
+        loginNameLabel.textColor = .yPGray
         loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginNameLabel)
-        loginNameLabel.topAnchor.constraint(equalTo: nameLabel!.bottomAnchor, constant: 8).isActive = true
-        loginNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([
+            loginNameLabel.topAnchor.constraint(equalTo: nameLabel!.bottomAnchor, constant: 8),
+            loginNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+        ])
+
     }
     
     func addDescriptionLabel() {
@@ -67,8 +76,11 @@ extension ProfileViewController {
         descriptionLabel.textColor = .white
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(descriptionLabel)
-        descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel!.bottomAnchor, constant: 8).isActive = true
-        descriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        NSLayoutConstraint.activate([
+            descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel!.bottomAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+        ])
+
     }
     func addLogoutButton() {
         let buttonImage = UIImage(named: "logout_button")
@@ -76,11 +88,14 @@ extension ProfileViewController {
         let logoutButtonView = UIButton.systemButton(with: buttonImage!,
                                                target: nil,
                                                action: nil)
-        logoutButtonView.tintColor = .YPRed
+        logoutButtonView.tintColor = .yPRed
         logoutButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(logoutButtonView)
-        logoutButtonView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18).isActive = true
-        logoutButtonView.centerYAnchor.constraint(equalTo: profileImageView!.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            logoutButtonView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
+            logoutButtonView.centerYAnchor.constraint(equalTo: profileImageView!.centerYAnchor)
+        ])
+
     }
 }

@@ -10,7 +10,7 @@ final class SingleImageViewController: UIViewController {
     }
 
     @IBOutlet private var imageView: UIImageView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBAction func didTabBackButton(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -37,7 +37,6 @@ final class SingleImageViewController: UIViewController {
         let vScale = visibleRectSize.height / imageSize.height
         let scale = max(maxZoomScale, max(minZoomScale, max(hScale, vScale)))
         scrollView.maximumZoomScale = scale > scrollView.maximumZoomScale ?  scale : scrollView.maximumZoomScale // для растягивания на весь экран
-
         scrollView.setZoomScale(scale, animated: false)
         scrollView.layoutIfNeeded()
         let newContentSize = scrollView.contentSize
