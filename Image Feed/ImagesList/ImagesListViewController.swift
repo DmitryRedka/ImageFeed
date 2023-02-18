@@ -10,6 +10,7 @@ final class ImagesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+ 
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,6 +62,16 @@ extension ImagesListViewController {
         let isLiked = indexPath.row % 2 == 0
         let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         cell.likeButton.setImage(likeImage, for: .normal)
+        /*
+        let gradient = CAGradientLayer()
+        gradient.frame = cell.cellImage.bounds
+        gradient.colors = [
+            UIColor(red: 0.102, green: 0.106, blue: 0.133, alpha: 0).cgColor,
+            UIColor(red: 0.102, green: 0.106, blue: 0.133, alpha: 0.2).cgColor
+        ]
+        cell.dateLabel.layer.addSublayer(gradient)
+         */
+            
     }
 }
 
