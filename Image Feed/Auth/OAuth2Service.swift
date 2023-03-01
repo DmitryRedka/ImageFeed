@@ -42,7 +42,6 @@ func authTokenRequest (code: String ) -> URLRequest {
                                      "code" : code,
                                      "grant_type" : "authorization_code"]
     let url = URL(string: "https://unsplash.com/oauth/token")!
-    let session = URLSession.shared
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
