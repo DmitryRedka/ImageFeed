@@ -52,6 +52,7 @@ func authTokenRequest (code: String ) -> URLRequest {
       request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
     } catch let error {
       print(error.localizedDescription)
+        // TODO alert
     }
     return request
 }

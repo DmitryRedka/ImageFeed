@@ -49,7 +49,7 @@ extension ProfileViewController {
 
     }
     
-    func addLoginNameLabel() {
+    private func addLoginNameLabel() {
         loginNameLabel = UILabel()
         guard let loginNameLabel = loginNameLabel else {
             return
@@ -66,7 +66,7 @@ extension ProfileViewController {
 
     }
     
-    func addDescriptionLabel() {
+    private func addDescriptionLabel() {
         descriptionLabel = UILabel()
         guard let descriptionLabel = descriptionLabel else {
             return
@@ -82,7 +82,7 @@ extension ProfileViewController {
         ])
 
     }
-    func addLogoutButton() {
+    private func addLogoutButton() {
         let buttonImage = UIImage(named: "logout_button")
         
         let logoutButtonView = UIButton.systemButton(with: buttonImage!,

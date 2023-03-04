@@ -11,10 +11,10 @@ final class SingleImageViewController: UIViewController {
 
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBAction func didTabBackButton(_ sender: Any) {
+    @IBAction private func didTabBackButton(_ sender: Any) {
         dismiss(animated: true)
     }
-    @IBAction func didTabSharingButton(_ sender: Any) {
+    @IBAction private func didTabSharingButton(_ sender: Any) {
         
         let activityViewController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
