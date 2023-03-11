@@ -14,7 +14,8 @@ class SplashViewController: UIViewController {
     
     private func switchTapBarController() {
         guard let window = UIApplication.shared.windows.first else {
-            fatalError("Invalid to switch TapBarController")
+            assertionFailure("Invalid to switch TapBarController")
+            return
         }
         let tapBarController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "TabBarViewController")
         window.rootViewController = tapBarController
@@ -27,7 +28,8 @@ extension SplashViewController {
                 let navigationController = segue.destination as? UINavigationController,
                 let viewController = navigationController.viewControllers[0] as? AuthViewController
             else {
-                fatalError(("Failed to prepare \(showAuthentificationScreenSegueIdentification)"))
+                assertionFailure(("Failed to prepare \(showAuthentificationScreenSegueIdentification)"))
+                return
             }
             viewController.delegate = self
         } else {

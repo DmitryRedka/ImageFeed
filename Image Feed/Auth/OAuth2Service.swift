@@ -30,15 +30,13 @@ final class OAuth2Service: NetworkRouting {
                 completion(.failure(error))
             }
         }
-        task.resume()
-         
-          
+        task.resume()         
     }
 }
 func authTokenRequest (code: String ) -> URLRequest {
-    let parameters: [String: Any] = ["client_id" : accessKey,
-                                     "client_secret" : secretKey,
-                                     "redirect_uri" : redirectURI,
+    let parameters: [String: Any] = ["client_id" : Constants.accessKey,
+                                     "client_secret" : Constants.secretKey,
+                                     "redirect_uri" : Constants.redirectURI,
                                      "code" : code,
                                      "grant_type" : "authorization_code"]
     let url = URL(string: "https://unsplash.com/oauth/token")!

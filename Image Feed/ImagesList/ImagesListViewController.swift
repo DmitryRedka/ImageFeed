@@ -62,16 +62,6 @@ extension ImagesListViewController {
         let isLiked = indexPath.row % 2 == 0
         let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         cell.likeButton.setImage(likeImage, for: .normal)
-        /*
-        let gradient = CAGradientLayer()
-        gradient.frame = cell.cellImage.bounds
-        gradient.colors = [
-            UIColor(red: 0.102, green: 0.106, blue: 0.133, alpha: 0).cgColor,
-            UIColor(red: 0.102, green: 0.106, blue: 0.133, alpha: 0.2).cgColor
-        ]
-        cell.dateLabel.layer.addSublayer(gradient)
-         */
-            
     }
 }
 

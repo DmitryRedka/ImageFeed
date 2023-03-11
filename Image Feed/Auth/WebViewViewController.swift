@@ -1,24 +1,23 @@
 import UIKit
 import WebKit
 
-fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
 final class WebViewViewController: UIViewController {
     
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet private weak var webView: WKWebView!
    
-    @IBOutlet weak var progressView: UIProgressView!
-    @IBAction func didTapBackButton(_ sender: Any) {
+    @IBOutlet private weak var progressView: UIProgressView!
+    @IBAction private func didTapBackButton(_ sender: Any) {
         delegate?.webViewViewControllerDidCancel(self)
     }
     weak var delegate: WebViewViewControllerDelegateProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
-        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
+        var urlComponents = URLComponents(string: Constants.unsplashAuthorizeURLString)!
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: accessKey),
-            URLQueryItem(name: "redirect_uri", value: redirectURI),
+            URLQueryItem(name: "client_id", value: Constants.accessKey),
+            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
             URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: accessScope),
+            URLQueryItem(name: "scope", value: Constants.accessScope),
         ]
         let url = urlComponents.url!
         let request = URLRequest(url: url)
