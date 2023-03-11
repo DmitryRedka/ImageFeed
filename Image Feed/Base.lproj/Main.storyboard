@@ -322,8 +322,8 @@
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
-                        <segue destination="YID-7w-evW" kind="relationship" relationship="viewControllers" id="HE1-Xc-yYb"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="pk7-vC-UPn"/>
+                        <segue destination="YID-7w-evW" kind="relationship" relationship="viewControllers" id="yEH-1b-nbx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wXD-op-l2z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -339,7 +339,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="KUM-F0-5TY">
-                                <rect key="frame" x="170.5" y="417.5" width="73" height="75.5"/>
+                                <rect key="frame" x="170.5" y="417.5" width="73" height="75"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="r7d-RO-zcc"/>
