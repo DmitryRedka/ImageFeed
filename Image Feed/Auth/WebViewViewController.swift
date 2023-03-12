@@ -23,8 +23,6 @@ final class WebViewViewController: UIViewController {
         let request = URLRequest(url: url)
         webView.load(request)
         webView.navigationDelegate = self
-        
-
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,6 +36,7 @@ final class WebViewViewController: UIViewController {
         webView.removeObserver(self, forKeyPath:
         #keyPath(WKWebView.estimatedProgress), context: nil)
     }
+
 }
 extension WebViewViewController: WKNavigationDelegate {
     
