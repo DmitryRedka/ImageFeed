@@ -36,6 +36,7 @@ final class WebViewViewController: UIViewController {
         webView.removeObserver(self, forKeyPath:
         #keyPath(WKWebView.estimatedProgress), context: nil)
     }
+
 }
 extension WebViewViewController: WKNavigationDelegate {
     

@@ -13,6 +13,9 @@ final class ProfileViewController: UIViewController {
         addDescriptionLabel()
         addLogoutButton()
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension ProfileViewController {
     func addProfileImageView() {
