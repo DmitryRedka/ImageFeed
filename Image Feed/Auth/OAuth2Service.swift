@@ -7,6 +7,8 @@ protocol NetworkRouting {
 final class OAuth2Service: NetworkRouting {
     static let shared = OAuth2Service()
     private let urlSession = URLSession.shared
+    private var task: URLSessionTask?
+    private var lastCode: String?
     private (set) var bearerToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -17,6 +19,11 @@ final class OAuth2Service: NetworkRouting {
     }
 
     func fetchAuthToken (didAuthenticateWithCode code: String, completion: @escaping (Result<String, Error>) -> Void) {
+        assert(Thread.isMainThread)
+        if lastCode == code { return }                      
+        task?.cancel()
+        
+        lastCode = code
         let request = authTokenRequest(code: code)
         
         let task = getObject (for: request) { [weak self] result in
@@ -26,10 +33,14 @@ final class OAuth2Service: NetworkRouting {
                 let authToken = body.accessToken
                 self.bearerToken = authToken
                 completion(.success(authToken))
+                self.task = nil
+
             case .failure(let error):
                 completion(.failure(error))
+                self.lastCode = nil
             }
         }
+        self.task = task
         task.resume()         
     }
 }
@@ -50,7 +61,7 @@ func authTokenRequest (code: String ) -> URLRequest {
       request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
     } catch let error {
       print(error.localizedDescription)
-        // TODO alert
+        // TODO: alert
     }
     return request
 }

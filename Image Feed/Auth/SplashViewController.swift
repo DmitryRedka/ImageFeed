@@ -1,4 +1,5 @@
 import UIKit
+import ProgressHUD
 
 class SplashViewController: UIViewController {
     
@@ -10,6 +11,10 @@ class SplashViewController: UIViewController {
         } else {
             performSegue(withIdentifier: showAuthentificationScreenSegueIdentification, sender: nil)
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     private func switchTapBarController() {
@@ -40,9 +45,11 @@ extension SplashViewController {
 
 extension SplashViewController: AuthViewControllerDelegateProtocol {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        ProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else {return}
             self.fetchOAuthToken(code)
+            
         }
     }
     private func fetchOAuthToken(_ code: String) {
@@ -50,8 +57,11 @@ extension SplashViewController: AuthViewControllerDelegateProtocol {
             guard let self = self else {return}
             switch result {
             case .success:
+                ProgressHUD.dismiss()
                 self.switchTapBarController()
+                
             case .failure:
+                ProgressHUD.dismiss()
                 break
             }
         }
