@@ -45,11 +45,10 @@ extension SplashViewController {
 
 extension SplashViewController: AuthViewControllerDelegateProtocol {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
-        ProgressHUD.show()
+        UIBlockingProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else {return}
             self.fetchOAuthToken(code)
-            
         }
     }
     private func fetchOAuthToken(_ code: String) {
@@ -57,11 +56,11 @@ extension SplashViewController: AuthViewControllerDelegateProtocol {
             guard let self = self else {return}
             switch result {
             case .success:
-                ProgressHUD.dismiss()
+                UIBlockingProgressHUD.dismiss()
                 self.switchTapBarController()
                 
             case .failure:
-                ProgressHUD.dismiss()
+                UIBlockingProgressHUD.dismiss()
                 break
             }
         }
