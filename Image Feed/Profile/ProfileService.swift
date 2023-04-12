@@ -1,7 +1,9 @@
 import Foundation
 
 final class ProfileService {
-
+    
+    static let shared = ProfileService()
+    private(set) var profile: Profile?
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private var lastToken: String?
@@ -17,11 +19,12 @@ final class ProfileService {
             guard let self = self  else {return}
             switch result {
             case .success(let body):
-                let profile = Profile(username: body.username,
-                                      firstName: body.firstName,
-                                      lastName: body.lastName,
-                                      bio: body.bio)
-                completion(.success(profile))
+                self.profile = Profile(username: body.username,
+                                  firstName: body.firstName,
+                                  lastName: body.lastName,
+                                  bio: body.bio)
+                
+                completion(.success(self.profile!))
                 self.task = nil
 
             case .failure(let error):
@@ -50,9 +53,12 @@ extension ProfileService {
         return urlSession.getData(for: request) { (result: Result<Data, Error>) in
             switch result {
             case .success(let data):
+
                 do {
+                    
                     let object = try decoder.decode(ProfileResult.self,
                                                     from: data)
+                    
                     completion(.success(object))
                 } catch {
                     completion(.failure(error))

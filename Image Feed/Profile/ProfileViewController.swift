@@ -1,6 +1,7 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    private let profileService = ProfileService.shared
     private var bearerToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -12,11 +13,33 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel: UILabel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        addProfileImageView()
-        addNameLabel()
-        addLoginNameLabel()
-        addDescriptionLabel()
-        addLogoutButton()
+        guard let profile = profileService.profile else {
+            return
+        }
+
+            addProfileImageView()
+            addNameLabel(profile.username)
+            addLoginNameLabel(profile.loginName)
+            addDescriptionLabel(profile.bio)
+            addLogoutButton()
+
+        /*
+        ProfileService.shared.fetchProfile(bearerToken!) { [weak self] result in
+            guard let self = self else {return}
+            switch result {
+            case .success(let profile):
+
+                
+                self.addProfileImageView()
+                self.addNameLabel(profile.username)
+                self.addLoginNameLabel(profile.loginName)
+                self.addDescriptionLabel(profile.bio)
+                self.addLogoutButton()
+            case .failure:
+                break
+            }
+        }
+         */
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -40,12 +63,14 @@ extension ProfileViewController {
 
     }
     
-    func addNameLabel() {
+    func addNameLabel(_ text: String?) {
         nameLabel = UILabel()
         guard let nameLabel = nameLabel else {
             return
         }
-        nameLabel.text = "Екатерина Новикова"
+        let text = text ?? "No name"
+ 
+        nameLabel.text = text
         nameLabel.font = .systemFont(ofSize: 23, weight: .bold)
         nameLabel.textColor = .white
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -57,12 +82,13 @@ extension ProfileViewController {
 
     }
     
-    private func addLoginNameLabel() {
+    private func addLoginNameLabel(_ text: String?) {
         loginNameLabel = UILabel()
         guard let loginNameLabel = loginNameLabel else {
             return
         }
-        loginNameLabel.text = "@ekaterina_nov"
+        let text = text ?? "No login"
+        loginNameLabel.text = text
         loginNameLabel.font = .systemFont(ofSize: 13, weight: .regular)
         loginNameLabel.textColor = .yPGray
         loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -74,12 +100,13 @@ extension ProfileViewController {
 
     }
     
-    private func addDescriptionLabel() {
+    private func addDescriptionLabel(_ text: String?) {
         descriptionLabel = UILabel()
         guard let descriptionLabel = descriptionLabel else {
             return
         }
-        descriptionLabel.text = "Hello, World!"
+        let text = text ?? "No description"
+        descriptionLabel.text = text
         descriptionLabel.font = .systemFont(ofSize: 13, weight: .regular)
         descriptionLabel.textColor = .white
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false

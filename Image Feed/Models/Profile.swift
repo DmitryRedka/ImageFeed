@@ -10,5 +10,5 @@ struct Profile {
     var loginName: String {
         return "@" + username
     }
-    let bio: String
+    let bio: String?
 }

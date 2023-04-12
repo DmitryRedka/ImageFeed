@@ -3,11 +3,12 @@ import ProgressHUD
 
 class SplashViewController: UIViewController {
     
+    private let profileService = ProfileService.shared
     private let showAuthentificationScreenSegueIdentification = "showAuthentificationScreen"
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let token = OAuth2TokenStorage().token {
-            switchTapBarController()
+            self.fetchProfile(token)
         } else {
             performSegue(withIdentifier: showAuthentificationScreenSegueIdentification, sender: nil)
         }
@@ -45,9 +46,9 @@ extension SplashViewController {
 
 extension SplashViewController: AuthViewControllerDelegateProtocol {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
-        UIBlockingProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else {return}
+            UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
         }
     }
@@ -55,12 +56,28 @@ extension SplashViewController: AuthViewControllerDelegateProtocol {
         OAuth2Service.shared.fetchAuthToken(didAuthenticateWithCode: code) { [weak self] result in
             guard let self = self else {return}
             switch result {
-            case .success:
+            case .success(let token):
                 UIBlockingProgressHUD.dismiss()
-                self.switchTapBarController()
+                self.fetchProfile(token)
                 
             case .failure:
                 UIBlockingProgressHUD.dismiss()
+                //TODO: Показать ошибку
+                break
+            }
+        }
+    }
+    
+    private func fetchProfile(_ token: String) {
+        profileService.fetchProfile(token) { [weak self] result in
+            guard let self = self else {return}
+            switch result {
+            case .success:
+                UIBlockingProgressHUD.dismiss()
+                self.switchTapBarController()
+            case .failure:
+                UIBlockingProgressHUD.dismiss()
+                //TODO: Показать ошибку
                 break
             }
         }
